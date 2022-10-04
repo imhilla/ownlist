@@ -42,6 +42,40 @@ class LinkedList
     return node if !node.next
     return node if !node.next while(node = node.next)
   end
+
+  def find(value)
+    node = @head
+    return false if !node.next
+    return node if node.next == value
+    while(node = node.next)
+      return node if node.value == value
+    end
+  end
+
+  def append_after(target, value)
+    node = find(target)
+    return unless node
+    old_next = node.next
+    node.next = Node.new(value)
+    node.next.next = old_next
+  end
+
+  def find_before(value)
+    node = @head
+    return false if !node.next
+    return node if node.next.value == value 
+    while(node = node.next)
+      return node if node.next && node.next.value == value
+    end
+  end
+
+  def print
+    node = @head
+    puts node
+    while(node = node.next)
+      puts node
+    end
+  end
 end
 
 list = LinkedList.new
