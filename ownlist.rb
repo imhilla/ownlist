@@ -69,6 +69,15 @@ class LinkedList
     end
   end
 
+  def delete(value)
+    if @head.value == value
+      @head = @head.next
+      return
+    end
+    node = find_before(value)
+    node.next = node.next.next
+  end
+
   def print
     node = @head
     puts node
@@ -82,6 +91,6 @@ list = LinkedList.new
 list.append(10)
 list.append(20)
 list.append(30)
-# list.append_after(10, 15)
-# list.append_after(20, 25)
-# list.print
+list.append_after(10, 15)
+list.append_after(20, 25)
+list.print
